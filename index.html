@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"
+      integrity="sha512-b94Z6431JyXY14iSXwgzeZurHHRNkLt9d6bAHt7BZT38eqV+GyngIi/tVye4jBKPYQ2lBdRs0glww4fmpuLRwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Simulator</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./webcam.js"></script>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="screen">
+        <div class="status-bar app">
+          <p class="time"></p>
+        </div>
+        <div class="home app">
+          <div class="apps">
+            <div class="icon camera-icon" onclick="webCamOn()">
+              <img class="icon-img" src="camera.svg" alt="" />
+            </div>
+            <div class="icon settings-icon">
+              <img class="icon-img" src="settings.svg" alt="" />
+            </div>
+            <div class="icon netflix-icon">
+              <img class="icon-img" src="netflix.svg" alt="" />
+            </div>
+            <div class="icon clock-icon">
+              <img class="icon-img" src="clock.svg" alt="" />
+            </div>
+          </div>
+          <div class="dock">
+            <div class="icon calculator-icon">
+              <img class="icon-img" src="calculator.svg" alt="" />
+            </div>
+            <div class="icon music-icon">
+              <img class="icon-img" src="apple-music.svg" alt="" />
+            </div>
+            <div class="icon weather-icon">
+              <img class="icon-img" src="ios-weather.svg" alt="" />
+            </div>
+            <div class="icon maps-icon">
+              <img class="icon-img" src="maps.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="music app"></div>
+        <div class="calculator app">
+          <form action="" class="calc__form">
+            <div class="calc__output">
+              <input type="text" name="display" />
+            </div>
+            <div class="calc__column">
+              <div class="calc__row">
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="AC"
+                  onclick="display.value = ``"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="DE"
+                  onclick="display.value = display.value.toString().slice(0, -1)"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="."
+                  onclick="display.value += `.`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="/"
+                  onclick="display.value += `/`"
+                />
+              </div>
+              <div class="calc__row">
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="7"
+                  onclick="display.value += `7`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="8"
+                  onclick="display.value += `8`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="9"
+                  onclick="display.value += `9`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="*"
+                  onclick="display.value += `*`"
+                />
+              </div>
+              <div class="calc__row">
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="4"
+                  onclick="display.value += `4`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="5"
+                  onclick="display.value += `5`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="6"
+                  onclick="display.value += `6`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="-"
+                  onclick="display.value += `-`"
+                />
+              </div>
+              <div class="calc__row">
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="1"
+                  onclick="display.value += `1`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="2"
+                  onclick="display.value += `2`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="3"
+                  onclick="display.value += `3`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="+"
+                  onclick="display.value += `+`"
+                />
+              </div>
+              <div class="calc__row">
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="00"
+                  onclick="display.value += `00`"
+                />
+                <input
+                  class="calc__btn"
+                  type="button"
+                  value="0"
+                  onclick="display.value += `0`"
+                />
+                <input
+                  class="calc__btn eql"
+                  type="button"
+                  value="="
+                  onclick="display.value =eval(display.value)"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="maps app"></div>
+        <div class="weather app"></div>
+        <div class="camera app">
+          <div class="camFeed">
+            <video class="camera__feed" id="cameraFeed" autoplay></video>
+            <canvas id="canvas" class="camera__feed"></canvas>
+          </div>
+          <a
+            class="camera__shutterbtn"
+            id="captureButton"
+            onclick="takePhoto()"
+            download
+          ></a>
+        </div>
+        <div class="settings app">
+          <ul class="settings__list">
+            <li>
+              Light Mode
+              <input
+                type="checkbox"
+                onclick="toggleDarkMode()"
+                class="checkbox__settings"
+              />
+            </li>
+            <li>
+              <p>Wallpapers</p>
+
+              <div class="wallpapers"></div>
+            </li>
+          </ul>
+        </div>
+        <div class="netflix app">
+          <div class="movie__search">
+            <input class="search__input" type="text" />
+            <button href="" class="search__icon">🔎</button>
+          </div>
+          <div class="movies__list"></div>
+        </div>
+        <div class="clock app"></div>
+      </div>
+      <button class="homeBtn"></button>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

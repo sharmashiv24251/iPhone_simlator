@@ -370,7 +370,7 @@ input:focus {
   color: white;
 }
 
-.search__input {
+.movie-search__input {
   height: 5rem;
   width: 80%;
   background-color: transparent;
@@ -437,4 +437,110 @@ input:focus {
   font-size: large;
   font-weight: bolder;
   border: none;
+}
+
+/* qr */
+.qr-search__input {
+  height: 5rem;
+  width: 80%;
+  background-color: transparent;
+  color: inherit;
+  font-size: 2rem;
+  border: none;
+  padding-left: 1rem;
+}
+
+.qr__search {
+  height: 13%;
+  width: 95%;
+  margin: auto;
+  border-radius: 24px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  top: 70%;
+  background: rgba(0, 0, 0, 0.01);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  color: white;
+}
+
+.qr__container {
+  display: none;
+  height: 18rem;
+  width: 18rem;
+  background-color: wheat;
+  position: relative;
+  top: -10%;
+  margin: auto;
+  overflow: hidden;
+  /* border-radius: 24px; */
+}
+
+.Generate-qr {
+  display: block;
+  position: relative;
+  top: 73%;
+  margin: 0 auto;
+  background-color: #203a43;
+  color: white;
+  font-size: 1.2rem;
+  /* border: none; */
+  border-radius: 24px;
+  padding: 10px;
+}
+
+/* Weather app */
+.weather {
+  background-color: rgba(0, 221, 255, 0.429);
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.weather-search__input {
+  height: 5rem;
+  width: 80%;
+  background-color: transparent;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: inherit;
+  font-size: 2rem;
+  border: none;
+  padding-left: 1rem;
+  color: white;
+}
+
+.weather__search {
+  height: 13%;
+  width: 95%;
+  margin: auto;
+  border-radius: 24px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  top: 6%;
+  background: rgba(0, 0, 0, 0.01);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  color: white;
+}
+
+.weather_image {
+  display: block;
+  position: relative;
+  top: 10%;
+  margin: auto;
+}
+
+.city__name {
+  font-size: 3rem;
+  position: relative;
+  top: 6%;
+  margin: 0;
+}
+
+.city__temp {
+  font-size: 4rem;
 }

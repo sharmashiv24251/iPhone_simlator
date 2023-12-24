@@ -1,17 +1,3 @@
-// temp
-// for (const movie of timeoutId) {
-//   const movieContainer = document.createElement("div");
-//   movieContainer.classList.add(`movie`);
-//   movieContainer.innerHTML = `
-// <image class="movie__img" src="${movie.Poster}"></image>
-// <div class="movie__detail">
-//   <h3 class="movie__name">${movie.Title}</h3>
-//   <h3 class="movie__year">Year : ${movie.Year} </h3>
-//   <a class="movie__imDb" src="https://www.imdb.com/title/${movie.imdbID}/"> IMDB</a>
-// </div>`;
-//   document.querySelector(`.movies__list`).appendChild(movieContainer);
-// }
-
 // CLOCK
 function updateClock() {
   var currentTimeElement = document.querySelector(".time");
@@ -42,8 +28,8 @@ const homeBtn = document.querySelector(".homeBtn");
 const time = document.querySelector(".time");
 const calculatorIcon = document.querySelector(".calculator-icon");
 const calculator = document.querySelector(".calculator");
-const musicIcon = document.querySelector(".music-icon");
-const music = document.querySelector(".music");
+const qrIcon = document.querySelector(".qr-icon");
+const qr = document.querySelector(".qr");
 const cameraIcon = document.querySelector(".camera-icon");
 const camera = document.querySelector(".camera");
 const mapsIcon = document.querySelector(".maps-icon");
@@ -88,7 +74,7 @@ calculatorIcon.addEventListener(
   "click",
   (calculator, handleAppClick.bind(this, calculator))
 );
-musicIcon.addEventListener("click", (music, handleAppClick.bind(this, music)));
+qrIcon.addEventListener("click", (qr, handleAppClick.bind(this, qr)));
 
 mapsIcon.addEventListener("click", (maps, handleAppClick.bind(this, maps)));
 weatherIcon.addEventListener(
@@ -184,7 +170,7 @@ const fetchData = async (searchTerm) => {
   // console.log(response.data.Search);
   return response.data.Search;
 };
-const movieInput = document.querySelector(`.search__input`);
+const movieInput = document.querySelector(`.movie-search__input`);
 
 const debounce = (fn) => {
   let timeoutId;
@@ -194,7 +180,7 @@ const debounce = (fn) => {
     }
     timeoutId = setTimeout(() => {
       fn.apply(null, args);
-    }, 500);
+    }, 200);
   };
 };
 
@@ -217,3 +203,50 @@ const onInput = debounce(async (e) => {
 });
 
 movieInput.addEventListener(`input`, onInput);
+
+// qr ........
+const qrInput = document.querySelector(`.qr-search__input`);
+
+const qrContainer = document.querySelector(`.qr__container`);
+
+const generateQr = () => {
+  qrContainer.style.display = `block`;
+  qrContainer.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrInput.value}`;
+};
+
+// WEATHER ///////////////
+const weatherApiKey = `6d0dbffbd7aa4484b74ebb9620983e3b`;
+const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?&units=metric`;
+const weatherImage = document.querySelector(`.weather_image`);
+async function checkWeather() {
+  const weatherInput = document.querySelector(`.weather-search__input`).value;
+
+  const response = await fetch(
+    weatherApiUrl +
+      `&appid=${weatherApiKey}&q=${weatherInput}
+  `
+  );
+
+  const data = await response.json();
+
+  document.querySelector(`.city__name`).innerHTML = data.name;
+  document.querySelector(`.city__temp`).innerHTML = `${data.main.temp}°C`;
+  if (data.weather[0].main == `Clouds`) {
+    weatherImage.src = `./clouds.png`;
+  }
+  if (data.weather[0].main == `Snow`) {
+    weatherImage.src = `./snow.png`;
+  }
+  if (data.weather[0].main == `Rain`) {
+    weatherImage.src = `./rain.png`;
+  }
+  if (data.weather[0].main == `Drizzle`) {
+    weatherImage.src = `./drizzle.png`;
+  }
+  if (data.weather[0].main == `Clear`) {
+    weatherImage.src = `./clear.png`;
+  }
+  if (data.weather[0].main == `Mist`) {
+    weatherImage.src = `./mist.png`;
+  }
+}

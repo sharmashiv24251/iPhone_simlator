@@ -38,8 +38,8 @@
             <div class="icon calculator-icon">
               <img class="icon-img" src="calculator.svg" alt="" />
             </div>
-            <div class="icon music-icon">
-              <img class="icon-img" src="apple-music.svg" alt="" />
+            <div class="icon qr-icon">
+              <img class="icon-img" src="qr.svg" alt="" />
             </div>
             <div class="icon weather-icon">
               <img class="icon-img" src="ios-weather.svg" alt="" />
@@ -49,7 +49,17 @@
             </div>
           </div>
         </div>
-        <div class="music app"></div>
+        <div class="qr app">
+          <div class="qr__search">
+            <input
+              class="qr-search__input"
+              type="text"
+              placeholder="Text to Qr code"
+            />
+          </div>
+          <button href="" onclick="generateQr()" class="Generate-qr">Generate</button>
+          <img class="qr__container" src=""></img>
+        </div>
         <div class="calculator app">
           <form action="" class="calc__form">
             <div class="calc__output">
@@ -184,7 +194,20 @@
           </form>
         </div>
         <div class="maps app"></div>
-        <div class="weather app"></div>
+        <div class="weather app">
+          <div class="weather__search">
+            <input
+              class="weather-search__input"
+              type="text"
+              placeholder="Search a City!"
+              value=""
+            />
+            <button onclick="checkWeather()"  id="city_search" class="search__icon">🔎</button>
+          </div>
+          <img src="" class="weather_image">
+          <h1 class="city__name"></h1>
+          <h1 class="city__temp"></h1>
+        </div>
         <div class="camera app">
           <div class="camFeed">
             <video class="camera__feed" id="cameraFeed" autoplay></video>
@@ -216,7 +239,11 @@
         </div>
         <div class="netflix app">
           <div class="movie__search">
-            <input class="search__input" type="text" />
+            <input
+              class="movie-search__input"
+              type="text"
+              placeholder="Search a Movie!"
+            />
             <button href="" class="search__icon">🔎</button>
           </div>
           <div class="movies__list"></div>
@@ -229,3 +256,4 @@
     <script src="./index.js"></script>
   </body>
 </html>
+<img src="" alt="" />
